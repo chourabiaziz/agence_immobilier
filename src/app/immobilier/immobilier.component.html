@@ -1,67 +1,156 @@
-<section class="property-grid grid">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="grid-option">
-                    <form>
+<style>
+    .search-property {
+        padding: 20px;
+        /* Add padding for better spacing */
+        border-radius: 5px;
+        /* Rounded corners */
+        position: fixed;
+        /* Fix the position to overlay the content */
+        top: 50%;
+        /* Center vertically */
+        left: 50%;
+        /* Center horizontally */
+        transform: translate(-50%, -50%);
+        /* Adjust the position */
+        z-index: 999;
+        /* Ensure it appears above other content */
+    }
 
-                    </form>
-                </div>
+
+    .content {
+        position: relative;
+        /* Positioning for the content */
+        padding: 20px;
+        /* Add padding for better spacing */
+        background: #909090d5;
+        /* Slightly opaque background for content */
+        border-radius: 5px;
+        /* Rounded corners */
+        margin: auto;
+        /* Center the content */
+        top: 50%;
+        /* Center vertically */
+        transform: translateY(-50%);
+        /* Adjust vertical position */
+        max-width: 500px;
+        /* Max width for the form */
+    }
+
+    .search-button {
+        position: fixed;
+        /* Fixes the button in place */
+        top: 20px;
+        /* Distance from the top of the viewport */
+        left: 30px;
+        /* Distance from the left of the viewport */
+        z-index: 1000;
+        /* Ensure it's above other content */
+    }
+</style>
+
+<span class="search-icon" (click)="toggleSearch()">
+    <span name="search-icon" class="btn btn-secondary search-button mt-5" style="margin-left: 30px;">Search
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+        </svg>
+    </span>
+
+    <div class="search-property" *ngIf="showSearch" style="margin-top: 50px;">
+        <div class="overlay" (click)="toggleSearch()"></div>
+        <div class="content">
+            <div class="title-box-d">
+                <h3 class="title-d">Search Property</h3>
             </div>
+            <span class="close- right-boxed ion-ios-close" (click)="toggleSearch()"></span>
+            <div class="-wrap form">
+                <label for=""><b>search by name , place , adresse and status</b></label>
+                <input [(ngModel)]="searched" type="text" class="form-control" id="" (click)="$event.stopPropagation()" placeholder="Aa..">
+            </div>
+        </div>
+    </div>
+</span>
 
-            <!-- Loop through properties -->
-            <div class="col-md-4" *ngFor="let property of listImmobilier">
-                <div *ngIf="property.title.toLowerCase().includes(searched) || searched== null">
-                    <div class="card-box-a card-shadow">
-                        <div class="img-box-a">
-                            <img [src]="property.imageUrl" alt="" class="img-a img-fluid">
-                        </div>
-                        <div class="card-overlay">
-                            <div class="card-overlay-a-content">
-                                <div class="card-header-a">
-                                    <h2 class="card-title-a">
-                                        <a [routerLink]="['/immobilier', property.id]">{{ property.title }}
-                                            <br /> {{ property.location }}</a>
-                                    </h2>
-                                    <p><strong>Property Type: </strong>{{ property.propertyType }}</p>
-                                    <p><strong>Status: </strong>{{ property.status }}</p>
+
+
+
+
+
+
+    <section class="property-grid grid">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                </div>
+
+                <!-- Loop through properties -->
+                <div class="col-md-4" *ngFor="let property of listImmobilier">
+                    <div *ngIf="(property.title.toLowerCase().includes(searched) || 
+              property.status.toLowerCase().includes(searched)  ) ||  
+              searched == null">
+
+                        <a [routerLink]="['/immobilier', property.id]">
+                            <div class="card-box-a card-shadow">
+                                <div class="img-box-a">
+
+
+                                    <img [src]="property.imageUrl" alt="" class="img-a img-fluid">
+
                                 </div>
-                                <div class="card-body-a">
-                                    <div class="price-box d-flex">
-                                        <span class="price-a">{{ property.status.toLowerCase() }} | DT {{ property.price
-                                            }}</span>
+                                <div class="card-overlay">
+                                    <div class="card-overlay-a-content">
+                                        <div class="card-header-a">
+                                            <h2 class="card-title-a">
+                                                <a [routerLink]="['/immobilier', property.id]">{{ property.title }}
+                                                    <br /> {{ property.location }}</a>
+                                            </h2>
+                                            <p style="color: aliceblue;"><strong>Property Type: </strong>{{
+                                                property.propertyType }}</p>
+                                            <p style="color: aliceblue;"><strong>Status: </strong>{{ property.status }}
+                                            </p>
+                                        </div>
+                                        <div class="card-body-a">
+                                            <div class="price-box d-flex">
+                                                <span class="price-a" style="color: aliceblue;">{{
+                                                    property.status.toLowerCase() }} | DT {{ property.price
+                                                    }}</span>
+                                            </div>
+                                            <a href="#" class="link-a">Click here to view
+                                                <span class="ion-ios-arrow-forward"></span>
+                                            </a>
+                                        </div>
+                                        <div class="card-footer-a">
+                                            <ul class="card-info d-flex justify-content-around">
+                                                <li>
+                                                    <h4 class="card-info-title">Area</h4>
+                                                    <span>{{ property.area }} m<sup>2</sup></span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Beds</h4>
+                                                    <span>{{ property.beds }}</span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Baths</h4>
+                                                    <span>{{ property.baths }}</span>
+                                                </li>
+                                                <li>
+                                                    <h4 class="card-info-title">Garages</h4>
+                                                    <span>{{ property.garages }}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <a href="#" class="link-a">Click here to view
-                                        <span class="ion-ios-arrow-forward"></span>
-                                    </a>
-                                </div>
-                                <div class="card-footer-a">
-                                    <ul class="card-info d-flex justify-content-around">
-                                        <li>
-                                            <h4 class="card-info-title">Area</h4>
-                                            <span>{{ property.area }} m<sup>2</sup></span>
-                                        </li>
-                                        <li>
-                                            <h4 class="card-info-title">Beds</h4>
-                                            <span>{{ property.beds }}</span>
-                                        </li>
-                                        <li>
-                                            <h4 class="card-info-title">Baths</h4>
-                                            <span>{{ property.baths }}</span>
-                                        </li>
-                                        <li>
-                                            <h4 class="card-info-title">Garages</h4>
-                                            <span>{{ property.garages }}</span>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
+
+    <a  class="btn btn-success mb-5" [routerLink]="['/immobilier/new']" >create new immobilier</a>
         </div>
+    </section>
 
 
-    </div>
-</section>
+    

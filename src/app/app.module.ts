@@ -11,6 +11,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { ImmobilierShowComponent } from './immobilier-show/immobilier-show.component';
+import { NewImmobilierComponent } from './form/new-immobilier/new-immobilier.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ImmobilierShowComponent } from './immobilier-show/immobilier-show.compo
     ImmobilierComponent,
     SearchComponent,
     NotFoundComponent,
-    ImmobilierShowComponent
+    ImmobilierShowComponent,
+    NewImmobilierComponent
   ],
   imports: [
     BrowserModule,

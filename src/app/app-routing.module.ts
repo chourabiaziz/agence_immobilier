@@ -5,6 +5,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { ImmobilierComponent } from './immobilier/immobilier.component';
 import { ImmobilierShowComponent } from './immobilier-show/immobilier-show.component';
+import { NewImmobilierComponent } from './form/new-immobilier/new-immobilier.component';
 
 
 
@@ -12,6 +13,7 @@ import { ImmobilierShowComponent } from './immobilier-show/immobilier-show.compo
 const ROUTES: Routes = [
   {path:'home', component: HomeComponent},
   {path:'immobilier', component: ImmobilierComponent},
+  {path:'immobilier/new', component: NewImmobilierComponent},
   {path:'immobilier/:id',  component: ImmobilierShowComponent},
   {path:'', redirectTo: 'home', pathMatch:'full'},
   {path:'**', component:NotFoundComponent },

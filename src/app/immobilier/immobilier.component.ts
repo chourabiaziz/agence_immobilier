@@ -16,7 +16,11 @@ import { Data } from '../services/data';
 export class ImmobilierComponent {
      listImmobilier : Immobilier[] = [];
      searched: string = '';
+     showSearch: boolean = false;
 
+     toggleSearch() {
+       this.showSearch = !this.showSearch;
+     }
 
   constructor(private activatedRoute: ActivatedRoute, private dataService: Data) {}
   ngOnInit() {

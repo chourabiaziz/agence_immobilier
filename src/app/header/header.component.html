@@ -18,14 +18,11 @@
           <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/immobilier']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Immobilier</a>
+          <a class="nav-link" [routerLink]="['/immobilier']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }" >Immobilier</a>
         </li>
       </ul>
     </div>
-   <span *ngIf="router.url === '/immobilier'" >
-     <input [(ngModel)]="searched" placeholder="Aa" class="form-control  fa fa-search" id="nom" name="nom" type="text">
-    
-   </span>
+   
   </div>
 </nav>
 
