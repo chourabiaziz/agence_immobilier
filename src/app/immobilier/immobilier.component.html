@@ -1,0 +1,67 @@
+<section class="property-grid grid">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="grid-option">
+                    <form>
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- Loop through properties -->
+            <div class="col-md-4" *ngFor="let property of listImmobilier">
+                <div *ngIf="property.title.toLowerCase().includes(searched) || searched== null">
+                    <div class="card-box-a card-shadow">
+                        <div class="img-box-a">
+                            <img [src]="property.imageUrl" alt="" class="img-a img-fluid">
+                        </div>
+                        <div class="card-overlay">
+                            <div class="card-overlay-a-content">
+                                <div class="card-header-a">
+                                    <h2 class="card-title-a">
+                                        <a [routerLink]="['/immobilier', property.id]">{{ property.title }}
+                                            <br /> {{ property.location }}</a>
+                                    </h2>
+                                    <p><strong>Property Type: </strong>{{ property.propertyType }}</p>
+                                    <p><strong>Status: </strong>{{ property.status }}</p>
+                                </div>
+                                <div class="card-body-a">
+                                    <div class="price-box d-flex">
+                                        <span class="price-a">{{ property.status.toLowerCase() }} | DT {{ property.price
+                                            }}</span>
+                                    </div>
+                                    <a href="#" class="link-a">Click here to view
+                                        <span class="ion-ios-arrow-forward"></span>
+                                    </a>
+                                </div>
+                                <div class="card-footer-a">
+                                    <ul class="card-info d-flex justify-content-around">
+                                        <li>
+                                            <h4 class="card-info-title">Area</h4>
+                                            <span>{{ property.area }} m<sup>2</sup></span>
+                                        </li>
+                                        <li>
+                                            <h4 class="card-info-title">Beds</h4>
+                                            <span>{{ property.beds }}</span>
+                                        </li>
+                                        <li>
+                                            <h4 class="card-info-title">Baths</h4>
+                                            <span>{{ property.baths }}</span>
+                                        </li>
+                                        <li>
+                                            <h4 class="card-info-title">Garages</h4>
+                                            <span>{{ property.garages }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
